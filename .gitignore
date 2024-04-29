@@ -10,3 +10,8 @@ __pycache__
 /results
 .ipynb_checkpoints/
 *.ipynb
+/TODO.txt
+/deprecated
+/temp_scripts
+/.vscode
+/runs
