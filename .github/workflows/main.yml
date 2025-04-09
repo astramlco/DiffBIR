@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       model_name:
-        description: 'Enter the model name, like "alice/bunny-detector"'
+        description: 'The name of the Replicate model to publish, e.g `username/modelname`. The model must already exist on Replicate.'
         required: true
 
 jobs:
@@ -25,8 +25,8 @@ jobs:
         uses: replicate/setup-cog@v2
         with:
           cog-version: "v0.14.4"
-          token: ${{ secrets.REPLICATE_CLI_AUTH_TOKEN }}
+          token: ${{ secrets.REPLICATE_API_TOKEN }}
           install-cuda: true
 
       - name: Push to Replicate
-        run: cog push r8.im/${{ vars.REPLICATE_MODEL }}
+        run: cog push r8.im/${{ inputs.model_name || vars.REPLICATE_MODEL }}
